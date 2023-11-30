@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageProcessing", "ImagePro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{32E51373-9651-4047-A5E4-FE8E713AE5DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{48532E9F-37B8-48C1-B69A-B7A83A84A338}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{32E51373-9651-4047-A5E4-FE8E713AE5DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32E51373-9651-4047-A5E4-FE8E713AE5DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32E51373-9651-4047-A5E4-FE8E713AE5DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48532E9F-37B8-48C1-B69A-B7A83A84A338}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48532E9F-37B8-48C1-B69A-B7A83A84A338}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48532E9F-37B8-48C1-B69A-B7A83A84A338}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48532E9F-37B8-48C1-B69A-B7A83A84A338}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
