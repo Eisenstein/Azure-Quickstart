@@ -14,7 +14,7 @@ builder.Services.AddAzureClients(clientBuilder =>
         
     clientBuilder.AddBlobServiceClient(new Uri(builder.Configuration["BlobStorageEndpoint"]!));
     clientBuilder.AddClient<CosmosClient, CosmosClientOptions>(options => new CosmosClient(builder.Configuration["CosmosDbEndpoint"], credential, options));
-
+    clientBuilder.AddServiceBusClientWithNamespace(builder.Configuration["ServiceBusNamespace"]!);
 
     clientBuilder.UseCredential(credential);
 });

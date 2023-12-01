@@ -2,6 +2,7 @@ using Azure.Storage.Blobs;
 using Microsoft.AspNetCore.Mvc;
 using Domain;
 using Microsoft.Azure.Cosmos;
+using Azure.Messaging.ServiceBus;
 
 namespace AzureQuickstart.Web
 {
@@ -10,7 +11,8 @@ namespace AzureQuickstart.Web
     public class ImageProcessingController(
         IConfiguration configuration,
         BlobServiceClient blobServiceClient, 
-        CosmosClient cosmosClient) : ControllerBase
+        CosmosClient cosmosClient,
+        ServiceBusClient serviceBusClient) : ControllerBase
     {
 
         [HttpPut]
@@ -24,13 +26,17 @@ namespace AzureQuickstart.Web
             var task = new Domain.Task(
                 id: Guid.NewGuid().ToString(),
                 fileName: image.FileName,
-                originalPath: "https://aisekquickstart.blob.core.windows.net/images/" + fileId,
+                originalPath: "/" + configuration["BlobSourceContainer"] + "/" + fileId,
                 state: TaskState.Created
             );
             await cosmosClient
                 .GetDatabase(configuration["Database"])
                 .GetContainer(configuration["DbContainer"])
                 .CreateItemAsync(task, new PartitionKey(task.id));
+
+            await serviceBusClient
+                .CreateSender(configuration["InitialTopicName"])
+                .SendMessageAsync(new ServiceBusMessage(task.id));
 
             return Accepted((object)task.id);
         }
